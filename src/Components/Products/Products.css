@@ -1,0 +1,30 @@
+.product-img{
+    text-align: center;
+}
+.single-product .product-name{
+    color: blue;
+}
+.single-product .seller{
+    color: lightcoral;
+    font-weight: 800;
+    cursor: pointer;
+}
+.sub-feature{
+    color: rgb(251, 134, 0);
+    font-weight: bold;
+}
+.feature ul{
+    list-style-type: square;
+}
+.product-button{
+    background-color: rgb(251, 134, 0);
+    padding: 10px 20px;
+    border: 2px solid gray;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.5s all;
+}
+.product-button:hover{
+    background: none;
+    border: 2px solid rgb(251, 134, 0);
+}

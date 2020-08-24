@@ -1,0 +1,13 @@
+.product-details{
+    border-left: 2px solid lightgray;
+
+}
+.Order{
+    background-color: rgb(13, 143, 155);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+.hideDisplay{
+    display: none;
+}
