@@ -1,13 +1,15 @@
 import React from 'react';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import Products from '../Products/Products'
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 const Cart = (props) => {
     const cart = props.cart;
     let singlePrice = 0
     for (let i = 0; i < cart.length; i++) {
         const product = cart[i];
-        singlePrice = singlePrice + product.price;
+        singlePrice = singlePrice + product.price * product.quantity;
     }
+
     // shipping cost
     let shipping = 0;
     if (singlePrice > 30) {
@@ -26,10 +28,13 @@ const Cart = (props) => {
     return (
         <div className="text-left mt-5">
             <h4>Items Ordered : <span>{cart.length}</span> </h4>
-            <h6>Product Price : <span>$ {singlePrice}</span></h6>
-            <h6>Shipping Cost : <span>$ {shipping}</span></h6>
+            <h6>Product Price : <span>$ {priceFormated(singlePrice)}</span></h6>
+            <h6>Shipping Cost : <span>$ {priceFormated(shipping)}</span></h6>
             <h6>Tax or Vat    : <span> $ {priceFormated(tax)}</span></h6>
-            <h4>Total Amount  : <span> $ {priceFormated(singlePrice + shipping + tax)}</span></h4>
+            <h4>Total  : <span> $ {priceFormated(singlePrice + shipping + tax)}</span></h4> <br />
+            {
+                props.children
+            }
         </div>
     );
 };

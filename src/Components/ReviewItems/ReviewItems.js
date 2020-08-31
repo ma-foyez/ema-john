@@ -1,11 +1,9 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import './Products.css'
-import { Link } from 'react-router-dom';
-const Products = (props) => {
-    const { img, name, seller, price, stock, key} = props.products;
-    const features = props.products.features;
+import Products from '../Products/Products';
+
+const ReviewItems = (props) => {
+    console.log(props.reviewItems);
+    const { img, name, seller, price, quantity, key, features, stock } = props.reviewItems
     return (
         <div className="product container">
             <div className="row">
@@ -16,12 +14,12 @@ const Products = (props) => {
                 </div>
                 <div className="col-md-7 mr-3">
                     <div className="single-product">
-                        <h4 className="product-name"><Link to={"/product/"+key}>{name}</Link></h4> <br />
+                        <h4 className="product-name"></h4> <br />
                         <h5 className="seller"> By {seller}</h5>
                         <div className="row mt-4">
                             <div className="col-md-6 mt-4">
                                 <h5><strong>$ {price}</strong></h5> <br />
-                                <h5>Only {stock} left in stock - order soon.</h5>
+                                <h5>Quantity : {quantity}</h5>
                             </div>
                             <div className="col-md-6">
                                 <div className="feature">
@@ -34,7 +32,7 @@ const Products = (props) => {
                                 </div>
                             </div>
                         </div>
-                       { props.showAddToCard && <button className="btn product-button" onClick={() => props.handleAddProduct(props.products)}><FontAwesomeIcon icon={faShoppingCart} /> Add To Card</button>}
+                        <button className="btn product-button" onClick={() => props.handleRemoveProduct(key)}>Remove Item</button>
                     </div>
                 </div>
             </div>
@@ -43,4 +41,4 @@ const Products = (props) => {
     );
 };
 
-export default Products;
+export default ReviewItems;
