@@ -16,8 +16,9 @@ import ProductDetails from './Components/ProductDetails/ProductDetails';
 function App() {
   return (
     <div className="App">
-      <Header></Header>
       <Router>
+        <Header></Header>
+
         <Switch>
           <Route path="/home">
             <Shop></Shop>
