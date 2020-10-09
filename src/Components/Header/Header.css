@@ -1,3 +1,11 @@
 .logo-container{
     text-align: center;
 }
+.link-path{
+    color: white;
+    font-weight: 800;
+}
+.link-path:hover{
+    text-decoration: none;
+    color: gray;
+}

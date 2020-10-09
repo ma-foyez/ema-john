@@ -1,7 +1,10 @@
 import React from 'react';
 import Products from '../Products/Products';
+import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 const ReviewItems = (props) => {
+    const history = useHistory();
     console.log(props.reviewItems);
     const { img, name, seller, price, quantity, key, features, stock } = props.reviewItems
     return (

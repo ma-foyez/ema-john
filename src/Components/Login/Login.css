@@ -1,0 +1,10 @@
+.Login{
+    text-align: center;
+    margin-top: 20px;
+}
+form input{
+    margin: 6px;
+    padding: 6px 30px;
+    border-radius: 25px;
+    outline: none;
+  }

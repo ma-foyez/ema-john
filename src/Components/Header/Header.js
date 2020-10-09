@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import { Button, Navbar, Nav, Form, FormControl } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,6 +8,8 @@ import logo from '../../images/logo.png';
 import fakeData from '../../fakeData';
 import { useState } from 'react';
 import { getDatabaseCart } from '../../utilities/databaseManager';
+import { Link } from 'react-router-dom';
+import { userContext } from '../../App';
 
 
 const Header = (props) => {
@@ -26,7 +28,12 @@ const Header = (props) => {
         })
         setCart(previousProduct);
     }, [])
+    const [loggedInUser, setLoggedInUser] = useContext(userContext);
 
+    const signOut = () =>{
+        sessionStorage.removeItem('token');
+        setLoggedInUser({});
+    }
     return (
         <div className="header-container">
             <div className="logo-container container">
@@ -39,12 +46,11 @@ const Header = (props) => {
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="text-center nav-menu mr-auto">
-                        <Nav.Link href="/home">Home</Nav.Link>
-                        <Nav.Link href="/shop">Shop</Nav.Link>
-                        <Nav.Link href="/review">Review</Nav.Link>
-                        <Nav.Link href="/inventory">Manager Inventory</Nav.Link>
-
+                    <Nav className=" ml-5 `nnav-menu mr-auto">
+                        <Nav.Link><Link className="link-path" to="/home">Home</Link></Nav.Link>
+                        <Nav.Link><Link className="link-path" to="/shop">Shop</Link></Nav.Link>
+                        <Nav.Link><Link className="link-path" to="/review">Review</Link></Nav.Link>
+                        <Nav.Link><Link className="link-path" to="/inventory">Manager Inventory</Link></Nav.Link>
                     </Nav>
                     <Nav>
                         <Nav.Link href="#" style={{ color: "white", marginRight: "10px" }}><FontAwesomeIcon icon={faShoppingCart} /> {cart.length} </Nav.Link>
@@ -53,6 +59,7 @@ const Header = (props) => {
                         <FormControl type="text" placeholder="Search" className="mr-sm-4 mb-3 mb-md-0" />
                         <Button variant="outline-info">Search</Button>
                     </Form>
+                    <Button className="ml-2" onClick={signOut}>Sign out</Button>
                 </Navbar.Collapse>
             </Navbar>
         </div>

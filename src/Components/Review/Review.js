@@ -5,11 +5,17 @@ import { getDatabaseCart, removeFromDatabaseCart, processOrder } from '../../uti
 import fakeData from '../../fakeData';
 import ReviewItems from '../ReviewItems/ReviewItems';
 import Cart from '../Cart/Cart';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import happyImage from '../../images/giphy.gif'
 
 const Review = () => {
     const [cart, setCart] = useState([]);
+     // handler place ordered
+     const [placeOrder, setPlaceOrder] = useState(false);
+
+     const history = useHistory()
+     const handlerProceedCheckout = () => {
+         history.push('/shipment');     } 
     // remove products handler
     const handleRemoveProduct = (productKey) => {
         const newCart = cart.filter(pd => pd.key !== productKey);
@@ -28,14 +34,7 @@ const Review = () => {
         setCart(cartProducts);
     }, [])
 
-    // handler place ordered
-    const [placeOrder, setPlaceOrder] = useState(false);
-    const handlerPlaceOrder = () => {
-        console.log("Click place orddere");
-        setCart([]);
-        processOrder();
-        setPlaceOrder(true);
-    }
+   
     let thankYou;
     if (placeOrder) {
         thankYou = <div className="row d-flex justify-content-center">
@@ -52,10 +51,7 @@ const Review = () => {
                         <h4 className="Order text-center m-3">Review Ordered</h4>
                         <div className="product-cart ml-5">
                             <Cart cart={cart}>
-
-                                <Link to="/review">
-                                    <button onClick={handlerPlaceOrder} className="btn product-button"> Place Ordered</button>
-                                </Link>
+                            <button onClick={handlerProceedCheckout} className="btn product-button"> Proceed Checkout </button>
                             </Cart>
                         </div>
                     </div>
